@@ -36,23 +36,23 @@ public class ChapterDetailActivity extends AppCompatActivity {
 
         Rule rule = new Rule();
         StringBuilder result = new StringBuilder("");
-        StringTokenizer scanner = new StringTokenizer(chapter.getChapterContent().replaceAll("<"," <").replaceAll(">","> "));
+        StringTokenizer scanner = new StringTokenizer(chapter.getChapterContent().replaceAll("<", " <").replaceAll(">", "> "));
         int count = 0;
         // read word by word
         while (scanner.hasMoreTokens()) {
             String word = scanner.nextToken();
 
-            System.out.println(" "+ word);
+            System.out.println(" " + word);
 
             if (word.contains("<") || word.contains(">")) {
                 result.append(word);
                 continue;
             } else if (rule.checkValid(word) == false) {
                 word = "<font color=#cc0029>" + word + "</font>";
-                result.append(word+" ");
                 count++;
             }
-            result.append(word+" ");
+            result.append(word + " ");
+
 
         }
         TextView countMisspellings = (TextView) findViewById(R.id.countMisspellings);
