@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.quan.myapplication.Entities.Chapter;
 import com.quan.myapplication.Managers.BookManager;
 import com.quan.myapplication.R;
-import com.quan.myapplication.Utils.Rule;
 
 import java.io.IOException;
 
@@ -31,14 +30,12 @@ public class ChapterDetailActivity extends AppCompatActivity {
         setTitle(chapter.getChapterName());
 
         chapter = bookManager.getChapter(chapter.getChapterID());
-        Rule rule=new Rule();
-        rule.checkValid(chapter.getChapterContent());
+
         TextView textView = (TextView) findViewById(R.id.detailChapter);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             textView.setText(Html.fromHtml(chapter.getChapterContent(), Html.FROM_HTML_MODE_COMPACT));
         } else {
             textView.setText(Html.fromHtml(chapter.getChapterContent()));
         }
-
     }
 }

@@ -1,9 +1,8 @@
-package com.quan.myapplication.Utils;/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 
 /**
  *
@@ -11,18 +10,18 @@ package com.quan.myapplication.Utils;/*
  */
 public class Rule {
 
-    private static int MAX_SL_NGUYEN_AM = 3;
-    private static int MIN_SL_NGUYEN_AM = 1;
-
-    private static int MAX_SL_PHU_AM = 5;
-    private static int MIN_SL_PHU_AM = 0;
+    public static int MAX_SL_NGUYEN_AM = 3;
+    public static int MIN_SL_NGUYEN_AM = 1;
+    
+    public static int MAX_SL_PHU_AM = 5;
+    public static int MIN_SL_PHU_AM = 0;
     
     int id = 0;
    
     
     //public final char[] phuAmCuoi = {'C', 'c', 'G', 'g', 'H', 'h', 'M', 'm', 'N', 'n', 'P', 'p', 'T', 't'};
-    private final char[] notPhuAmCuoi = {'B', 'b', 'D', 'd', 'Đ', 'đ', 'K', 'k', 'L', 'l', 'Q', 'q', 'R', 'r', 'S', 's', 'V', 'v', 'X', 'x'};
-    private final char[] nguyenAm = {
+    public final char[] notPhuAmCuoi = {'B', 'b', 'D', 'd', 'Đ', 'đ', 'K', 'k', 'L', 'l', 'Q', 'q', 'R', 'r', 'S', 's', 'V', 'v', 'X', 'x'};
+    public final char[] nguyenAm = {
         'A', 'À', 'Á', 'Ả', 'Ã', 'Ạ',
         'Ă', 'Ằ', 'Ắ', 'Ẳ', 'Ẵ', 'Ặ',
         'Â', 'Ầ', 'Ấ', 'Ẩ', 'Ẫ', 'Ậ',
@@ -48,7 +47,7 @@ public class Rule {
         'ư', 'ừ', 'ứ', 'ử', 'ữ', 'ự',
         'y', 'ỳ', 'ý', 'ỷ', 'ỹ', 'ỵ',
     };
-    private final char[] nguyenAmThanh = {
+    public final char[] nguyenAmThanh = {
 	
         'À', 'Á', 'Ả', 'Ã', 'Ạ',
         'Ằ', 'Ắ', 'Ẳ', 'Ẵ', 'Ặ',
@@ -76,7 +75,7 @@ public class Rule {
         'ỳ', 'ý', 'ỷ', 'ỹ', 'ỵ',
 
 	};
-    private final char[] upperCase = {
+    public final char[] upperCase = {
 	'A', 'À', 'Á', 'Ả', 'Ã', 'Ạ',
 	'Ă', 'Ằ', 'Ắ', 'Ẳ', 'Ẵ', 'Ặ',
 	'Â', 'Ầ', 'Ấ', 'Ẩ', 'Ẫ', 'Ậ',
@@ -94,16 +93,16 @@ public class Rule {
 	'R', 'S', 'T', 'V', 'X',
 	
 	};
-    private final char[] phuAm = {
+    public final char[] phuAm = {
         'B','C','D','Đ','G','H','K','L','M','N','P','Q','R','S','T','V','X',
         'b','c','d','đ','g','h','k','l','m','n','p','q','r','s','t','v','x',
     };
-
-    private final char[] chuSo = {'0','1','2','3','4','5','6','7','8','9'};
-
-    private final char[] dauCau = {',','.','?','!',';',':','"','(',')'};
-
-    private boolean isNguyenAm(char ch) {
+    
+    public final char[] chuSo = {'0','1','2','3','4','5','6','7','8','9'};
+    
+    public final char[] dauCau = {',','.','?','!',';',':','"','(',')'};
+    
+    public boolean isNguyenAm(char ch) {
         for (int i=0; i<nguyenAm.length; i++) {
             if (ch == nguyenAm[i]) {
                 return true;
@@ -111,8 +110,8 @@ public class Rule {
         }
         return false;
     }
-
-    private boolean isPhuAm(char ch) {
+    
+    public boolean isPhuAm(char ch) {
         for (int i=0; i<phuAm.length; i++) {
             if (ch == phuAm[i]) {
                 return true;
@@ -120,8 +119,8 @@ public class Rule {
         }
         return false;
     }
-
-    private boolean isDauCau(char ch) {
+    
+    public boolean isDauCau(char ch) {
         for (int i=0; i<dauCau.length; i++) {
             if (ch == dauCau[i]) {
                 return true;
@@ -129,8 +128,8 @@ public class Rule {
         }
         return false;
     }
-
-    private boolean isChuSo(char ch) {
+    
+    public boolean isChuSo(char ch) {
         for (int i=0; i<chuSo.length; i++) {
             if (ch == chuSo[i]) {
                 return true;
@@ -138,32 +137,32 @@ public class Rule {
         }
         return false;
     }
-
-
-    private boolean checkExist(String x){
+    
+    
+    public boolean checkExist(String x){
         for (char ch : x.toCharArray()) {
             if (!isPhuAm(ch)&&!isNguyenAm(ch)&&!isDauCau(ch)) return false;
         }
         return true;
-    }
-
-    private boolean checkMaxMinPhuAm(String x) {
+    }      
+    
+    public boolean checkMaxMinPhuAm(String x) {
         int sl = 0;
         for (char ch : x.toCharArray()) {
             if (isPhuAm(ch)) sl++;
         }
         return (sl >= MIN_SL_PHU_AM && sl <= MAX_SL_PHU_AM) ? true : false;
     }
-
-    private boolean checkMaxMinNguyenAm(String x) {
+    
+    public boolean checkMaxMinNguyenAm(String x) {
         int sl = 0;
         for (char ch : x.toCharArray()) {
             if (isNguyenAm(ch)) sl++;
         }
         return (sl >= MIN_SL_NGUYEN_AM && sl <= MAX_SL_NGUYEN_AM) ? true : false;
     }
-
-    private boolean checkPhuAmCuoi(String x) {
+    
+    public boolean checkPhuAmCuoi(String x) {
         char[] array = x.toCharArray();
         char cuoi = array[array.length-1];
         for (int i = 0; i<notPhuAmCuoi.length; i++) {
@@ -187,9 +186,14 @@ public class Rule {
         System.out.println("Số lượng tối thiểu - tối đa nguyên âm: " + MIN_SL_NGUYEN_AM + " - " + MAX_SL_NGUYEN_AM);
         System.out.println("Số lượng tối thiểu - tối đa phụ âm: " + MIN_SL_PHU_AM + " - " + MAX_SL_PHU_AM);
     }
-*/
+*/     
 
-    private boolean checkDauCau(String x){
+    public void show(int num) {
+        //System.out.println("Từ này sai luật số " + id);
+        System.out.println("Tong so loi la: " + num);
+    }   
+    
+    public boolean checkDauCau(String x){
         char[] ch=x.toCharArray();
             for(int i=0;i<ch.length;i++) {
                 if(isDauCau(ch[i])){
@@ -207,7 +211,7 @@ public class Rule {
     }
    
     // kiểm tra k và c đi với các từ i,e,ê và q đi với u
-    private boolean checkLetterKandCandQ(String x){
+    public boolean checkLetterKandCandQ(String x){
         char[] ch=x.toCharArray();  
             for(int i=0;i<ch.length-1;i++) {
                 //System.out.println(ch[0]);
@@ -228,7 +232,7 @@ public class Rule {
             return true;
     }
     
-    private boolean checkGandGH(String x){
+    public boolean checkGandGH(String x){
         char[] ch=x.toCharArray();  
             for(int i=0;i<ch.length-1;i++) {
                 //System.out.println(ch[0]);
@@ -248,7 +252,7 @@ public class Rule {
             return true;
     }
         
-    private boolean checkDMark(String x) {
+    public boolean checkDMark(String x) {
 	int count = 0; 			//đếm số nguyên âm kèm dấu thanh
 	char[] ch = x.toCharArray();
 		for(int i = 0; i < ch.length; i++)
@@ -262,7 +266,7 @@ public class Rule {
 	return true;
     }
     
-    private boolean checkUpperCase(String x) {
+    public boolean checkUpperCase(String x) {
 	char[] ch = x.toCharArray();
             for(int i = 0; i < ch.length; i++){
                 for(int j = 0; j < upperCase.length; j++){
@@ -275,7 +279,7 @@ public class Rule {
         return true;
     }
     
-    private boolean checkHaiPhuAm (String x) {
+    public boolean checkHaiPhuAm (String x) {
 	char[] ch = x.toCharArray();
         for(int i = 0; i < ch.length - 1; i++){
             if( isPhuAm(ch[i]) && isPhuAm(ch[i+1])){
@@ -291,7 +295,7 @@ public class Rule {
         return true;
     }
     
-    private boolean checkHaiPhuAm2 (String x) {
+    public boolean checkHaiPhuAm2 (String x) {
         char[] ch = x.toCharArray();        
         for(int i = 1; i < ch.length; i++){
             if(isPhuAm(ch[i])){
@@ -345,10 +349,7 @@ public class Rule {
         if(!checkUpperCase(x)) {
         return false;
         }
-
-        if(!checkDauCau(x)) {
-            return false;
-        }
+        
         if(!checkHaiPhuAm(x)){
         return false;
         }
@@ -357,7 +358,6 @@ public class Rule {
         }
         return true;
     }
-
 }
 
 
