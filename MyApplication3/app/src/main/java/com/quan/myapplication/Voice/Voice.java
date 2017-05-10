@@ -49,16 +49,16 @@ public class Voice extends AppCompatActivity {
         }
     }
 
-        protected void onActivityResult(int requestCode,int resultCode, Intent data){
-            super.onActivityResult(requestCode,resultCode,data);
+    protected void onActivityResult(int requestCode,int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
 
-            switch (requestCode){
-                case REO_CODE_SPEECH_OUTPUT:
-                    if(resultCode==RESULT_OK&&null!=data){
-                        ArrayList<String> voiceInText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                        showVoiceText.setText(voiceInText.get(0));
-                    }
-                    break;
-            }
+        switch (requestCode){
+            case REO_CODE_SPEECH_OUTPUT:
+                if(resultCode==RESULT_OK&&null!=data){
+                    ArrayList<String> voiceInText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    showVoiceText.setText(voiceInText.get(0));
+                }
+                break;
         }
     }
+}
