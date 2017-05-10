@@ -251,7 +251,7 @@ public class Rule {
             }
             return true;
     }
-        
+        //check dau cau
     public boolean checkDMark(String x) {
 	int count = 0; 			//đếm số nguyên âm kèm dấu thanh
 	char[] ch = x.toCharArray();
