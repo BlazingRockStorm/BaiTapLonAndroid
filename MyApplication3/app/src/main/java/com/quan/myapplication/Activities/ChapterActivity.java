@@ -14,6 +14,7 @@ import com.quan.myapplication.Entities.Book;
 import com.quan.myapplication.Entities.Chapter;
 import com.quan.myapplication.Managers.BookManager;
 import com.quan.myapplication.R;
+import com.quan.myapplication.Utils.Rule;
 
 import java.io.IOException;
 import java.util.ArrayList;
