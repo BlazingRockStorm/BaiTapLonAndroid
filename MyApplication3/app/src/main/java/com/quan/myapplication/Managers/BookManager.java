@@ -47,6 +47,24 @@ public class BookManager {
         return lstData;
     }
 
+    public Book getBookByID(Integer bookID)
+    {
+        String sql = "SELECT * FROM kimdung where stID = ?";
+        Cursor cur = mDatabase.rawQuery(sql, new String[]{bookID.toString()});
+        ArrayList<Book> lstData = new ArrayList<Book>();
+        if (cur.moveToFirst()) {
+            Book book = new Book();
+            book.setBookID(cur.getInt(0));
+            book.setBookName(cur.getString(1));
+            book.setAuthorID(cur.getInt(2));
+            book.setImagePath(cur.getString(3));
+            book.setBookDescription(cur.getString(4));
+
+            return book;
+        }
+        return null;
+    }
+
     public ArrayList<Chapter> getAllChapter(Integer bookID)
     {
         String sql = "SELECT deID, deName FROM st_kimdung where stID = ?";

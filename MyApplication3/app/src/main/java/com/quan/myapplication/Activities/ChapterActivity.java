@@ -1,6 +1,8 @@
 package com.quan.myapplication.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,7 +23,6 @@ import java.util.ArrayList;
 public class ChapterActivity extends AppCompatActivity {
     private BookManager bookManager;
     private ListView mList;
-    private Intent myIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +38,10 @@ public class ChapterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if(myIntent == null)
-        {
-            myIntent = getIntent();
-        }
-        Book book = (Book) myIntent.getSerializableExtra("book");
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.share_pref),Context.MODE_PRIVATE);
+        int bookID = sharedPref.getInt(getString(R.string.book_id), 0);
+        Book book = bookManager.getBookByID(bookID);
+
         //Set book name
         setTitle(book.getBookName());
         TextView bookName = (TextView) findViewById(R.id.detailBookName);
@@ -51,7 +51,7 @@ public class ChapterActivity extends AppCompatActivity {
         int drawID = getResources().getIdentifier(book.getImagePath(),"drawable",getPackageName());
         imageView.setImageResource(drawID);
 
-        final ArrayList<Chapter> lstChapters = bookManager.getAllChapter(book.getBookID());
+        final ArrayList<Chapter> lstChapters = bookManager.getAllChapter(bookID);
         ArrayAdapter<Chapter> chapterArrayAdapter = new ArrayAdapter<Chapter>(ChapterActivity.this,android.R.layout.simple_list_item_1, lstChapters);
         mList = (ListView) findViewById(R.id.lstChapter);
         mList.setAdapter(chapterArrayAdapter);
