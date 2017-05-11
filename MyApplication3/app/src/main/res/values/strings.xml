@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Truyện</string>
     <string name="author">Tác giả:</string>
+    <string name="book_id">bookid</string>
+    <string name="share_pref">Share_Pref</string>
 </resources>
