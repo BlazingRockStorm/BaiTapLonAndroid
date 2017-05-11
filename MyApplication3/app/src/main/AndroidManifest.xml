@@ -10,13 +10,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.BookActivity"
-<<<<<<< HEAD
-            android:label="Danh sách truyện"
             android:label="Truyện"
             android:windowSoftInputMode="adjustPan">
-=======
-            android:label="Truyện">
->>>>>>> 30a7b30f6c2c80ea2882f13d2367be29226766b4
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
