@@ -10,8 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.BookActivity"
-            android:label="Truyện"
-            android:windowSoftInputMode="adjustPan">
+            android:label="Truyện">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
