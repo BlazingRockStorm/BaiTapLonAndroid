@@ -33,6 +33,7 @@ public class BookActivity extends AppCompatActivity {
     private BookManager bookManager;
     private BookAdapter bookAdapter;
     private EditText searchBox;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,39 +48,12 @@ public class BookActivity extends AppCompatActivity {
 
         initLstBook(bookManager.getAllBook());
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setCustomView(R.layout.menu_search);
-
-        searchBox = (EditText) actionBar.getCustomView().findViewById(
-                R.id.searchfield);
+        actionBar = getSupportActionBar();
         // Cài đặt chế độ hiển thị
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
-                | ActionBar.DISPLAY_SHOW_HOME);
+                | ActionBar.DISPLAY_SHOW_TITLE);
+        initActionBar();
 
-
-        searchBox.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                bookAdapter.getFilter().filter(s);
-            }
-        });
-
-        ImageButton imgVoiceSearch = (ImageButton) actionBar.getCustomView().findViewById(R.id.search_voice_btn);
-
-        imgVoiceSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnToOpenMic();
-            }
-        });
     }
 
     private void initLstBook(ArrayList<Book> lstBook) {
@@ -94,7 +68,7 @@ public class BookActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) bookAdapter.getItem(position);
                 Intent intent = new Intent(BookActivity.this, ChapterActivity.class);
-                SharedPreferences sharedPref = getSharedPreferences(getString(R.string.share_pref),Context.MODE_PRIVATE);
+                SharedPreferences sharedPref = getSharedPreferences(getString(R.string.share_pref), Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt(getString(R.string.book_id), book.getBookID());
                 editor.commit();
@@ -130,4 +104,58 @@ public class BookActivity extends AppCompatActivity {
         }
     }
 
+    protected void initActionBar() {
+        actionBar.setCustomView(R.layout.action_bar_search_icon);
+        ImageButton searchBtn = (ImageButton) actionBar.getCustomView().findViewById(R.id.searchBtn);
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initSearchBar();
+            }
+        });
+    }
+
+    protected void initSearchBar() {
+        actionBar.setCustomView(R.layout.menu_search);
+
+
+        ImageButton cancelSearch = (ImageButton) actionBar.getCustomView().findViewById(R.id.cancelSearch);
+
+        cancelSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookAdapter.getFilter().filter("");
+                initActionBar();
+            }
+        });
+
+        searchBox = (EditText) actionBar.getCustomView().findViewById(
+                R.id.searchfield);
+
+
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                bookAdapter.getFilter().filter(s);
+            }
+        });
+
+        ImageButton imgVoiceSearch = (ImageButton) actionBar.getCustomView().findViewById(R.id.search_voice_btn);
+
+        imgVoiceSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnToOpenMic();
+            }
+        });
+    }
 }

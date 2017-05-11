@@ -5,13 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ImageButton
+        android:id="@+id/cancelSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
     <EditText
         android:id="@+id/searchfield"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/search_button"
+        android:layout_toEndOf="@+id/cancelSearch"
         android:inputType="textFilter" />
 
     <ImageButton

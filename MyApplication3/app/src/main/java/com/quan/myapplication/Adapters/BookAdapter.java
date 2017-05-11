@@ -75,6 +75,13 @@ public class BookAdapter extends ArrayAdapter {
                         filteredItems.add(book);
                     }
                 }
+                if(filteredItems.size() == 0)
+                {
+                    Book book = new Book();
+                    book.setBookName("Không tìm thấy sách!");
+                    book.setImagePath("This is placeholder text");
+                    filteredItems.add(book);
+                }
                 result.count = filteredItems.size();
                 result.values = filteredItems;
             } else {
